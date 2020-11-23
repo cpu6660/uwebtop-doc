@@ -1,0 +1,362 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "UWebtop is a  remote desktop gateway.\nIt supports standard protocols like VNC, RDP, and SSH.",
+    "title": "Sandbox API.",
+    "version": "0.0.1"
+  },
+  "paths": {
+    "/bridge_connect": {
+      "get": {
+        "description": "bridge connect to a remote desktop",
+        "tags": [
+          "connect"
+        ],
+        "operationId": "BridgeConnectRequest",
+        "parameters": [
+          {
+            "type": "string",
+            "x-go-name": "BridgeId",
+            "description": "bridge id of registered resource",
+            "name": "bridgeId",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "string",
+            "x-go-name": "ResourceId",
+            "description": "id of registered resource",
+            "name": "resource_id",
+            "in": "query",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/direct_password_connect": {
+      "get": {
+        "description": "direct password connect to a remote desktop",
+        "tags": [
+          "connect"
+        ],
+        "operationId": "DirectPasswordConnectRequest",
+        "parameters": [
+          {
+            "type": "string",
+            "x-go-name": "Protocol",
+            "description": "protocol of remote connect",
+            "name": "protocol",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "string",
+            "x-go-name": "HostName",
+            "description": "hostname of remote connect",
+            "name": "hostname",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "x-go-name": "Port",
+            "description": "port of remote connect",
+            "name": "port",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "string",
+            "x-go-name": "UserName",
+            "description": "username of remote connect",
+            "name": "username",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "string",
+            "x-go-name": "Password",
+            "description": "password of remote connect",
+            "name": "password",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "boolean",
+            "x-go-name": "ReadOnly",
+            "description": "is remote connect readonly or not",
+            "name": "read_only",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "string",
+            "x-go-name": "RecycleId",
+            "description": "connect to an existing connection",
+            "name": "recycle_id",
+            "in": "query"
+          }
+        ]
+      }
+    },
+    "/direct_pubkey_connect": {
+      "get": {
+        "description": "direct pubkey connect to a remote desktop",
+        "tags": [
+          "connect"
+        ],
+        "operationId": "DirectPubkeyConnectRequest",
+        "parameters": [
+          {
+            "type": "string",
+            "x-go-name": "Protocol",
+            "description": "protocol of remote connect",
+            "name": "protocol",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "string",
+            "x-go-name": "HostName",
+            "description": "hostname of remote connect",
+            "name": "hostname",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "x-go-name": "Port",
+            "description": "port of remote connect",
+            "name": "port",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "boolean",
+            "x-go-name": "ReadOnly",
+            "description": "is remote connect readonly or not",
+            "name": "read_only",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "string",
+            "x-go-name": "RecycleId",
+            "description": "connect to an existing connection",
+            "name": "recycle_Id",
+            "in": "query"
+          }
+        ]
+      }
+    },
+    "/register_bridge": {
+      "post": {
+        "description": "register bridge",
+        "tags": [
+          "register"
+        ],
+        "operationId": "RegisterBridgeRequest"
+      }
+    },
+    "/register_resource": {
+      "post": {
+        "description": "register resource to get connect token",
+        "tags": [
+          "register"
+        ],
+        "operationId": "RegisterResourceRequest",
+        "parameters": [
+          {
+            "type": "string",
+            "x-go-name": "Protocol",
+            "description": "protocol of remote connect",
+            "name": "protocol",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "string",
+            "x-go-name": "HostName",
+            "description": "hostname of remote connect",
+            "name": "hostname",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "x-go-name": "Port",
+            "description": "port of remote connect",
+            "name": "port",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "string",
+            "x-go-name": "UserName",
+            "description": "username of remote connect",
+            "name": "username",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "x-go-name": "Password",
+            "description": "password of remote connect",
+            "name": "password",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "x-go-name": "ReadOnly",
+            "description": "is remote connect readonly or not",
+            "name": "read_only",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "string",
+            "x-go-name": "RecycleId",
+            "description": "connect to an existing connection",
+            "name": "recycle_id",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/RegisterResourceResponse"
+          }
+        }
+      }
+    },
+    "/registered_connect": {
+      "get": {
+        "description": "registered connect to a remote desktop",
+        "tags": [
+          "connect"
+        ],
+        "operationId": "RegisteredConnectRequest",
+        "parameters": [
+          {
+            "type": "string",
+            "x-go-name": "Token",
+            "description": "token contains connection id",
+            "name": "token",
+            "in": "query",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/user_connection_status": {
+      "get": {
+        "description": "get user connection status",
+        "tags": [
+          "connection"
+        ],
+        "operationId": "UserConnectionStatusRequest",
+        "parameters": [
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "x-go-name": "UserConnections",
+            "name": "user_connections",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/UserConnectionStatusResponse"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ResourceToken": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string",
+          "x-go-name": "Token",
+          "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2Nvbm5lY3Rpb25fdXVpZCI6IjE5MGVmM2Q3NjQ3OTQ4ZmNhYWQzNThmZTQ0OWI5Yjc2In0.pJ-JPT0TDF218emlqW6dqCwbgAyBftvRQ2_VwNLdyNw"
+        },
+        "user_connection_id": {
+          "type": "string",
+          "x-go-name": "UserConnectionId",
+          "example": "4d35f93cded74799bedba6a771a85052"
+        }
+      },
+      "x-go-package": "git.ucloudadmin.com/securityhouse/goservice/uwebtop/app"
+    },
+    "UserConnectionStatus": {
+      "type": "object",
+      "properties": {
+        "connection_status": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "x-go-name": "ConnectionStatus",
+          "example": {
+            "4d35f93cded74799bedba6a771a85052": "online",
+            "5d35f93cded74799bedba6a771a85052": "offline",
+            "6d35f93cded74799bedba6a771a85052": "init"
+          }
+        }
+      },
+      "x-go-package": "git.ucloudadmin.com/securityhouse/goservice/uwebtop/app"
+    }
+  },
+  "responses": {
+    "RegisterResourceResponse": {
+      "description": "RegisterResourceResponse : return link token",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "ret_code": {
+            "description": "HTTP status code",
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "RetCode",
+            "example": 200
+          },
+          "ret_data": {
+            "$ref": "#/definitions/ResourceToken"
+          },
+          "ret_msg": {
+            "description": "HTTP code msg",
+            "type": "string",
+            "x-go-name": "RetMsg"
+          }
+        }
+      }
+    },
+    "UserConnectionStatusResponse": {
+      "description": "UserConnectionStatusResponse : user connection status",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "ret_code": {
+            "description": "HTTP status code",
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "RetCode",
+            "example": 200
+          },
+          "ret_data": {
+            "$ref": "#/definitions/UserConnectionStatus"
+          },
+          "ret_msg": {
+            "description": "HTTP code msg",
+            "type": "string",
+            "x-go-name": "RetMsg"
+          }
+        }
+      }
+    }
+  }
+}
